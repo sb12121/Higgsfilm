@@ -1,0 +1,13 @@
+node_modules/
+out/
+dist/
+.higgsfilm-render-*/
+*.log
+.DS_Store
+
+# Local credentials and generated project media
+.env
+settings.json
+exports/
+scenes/
+.gstack/
