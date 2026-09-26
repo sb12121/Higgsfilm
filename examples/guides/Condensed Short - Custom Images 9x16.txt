@@ -1,0 +1,122 @@
+[CHANNEL] CUSTOM 9:16 IMAGE GENERATION PROMPT
+
+APP USE: Condensed short / 9:16 Visual direction. Use this prompt for external vertical-image generation, then place images in the episode Custom-9x16 folder. Do not load it into the 16:9 Custom image generator.
+
+([CHANNEL] only)
+
+Use the channel style guide + character references as canonical design.
+- Style guide: [CHANNEL_ROOT]/Visual Direction - Style Guide.md
+- PRIMARY IDENTITY + PROPORTION LOCK: [CHARACTER_SHEET]
+- Face / craft look: [FACE_REFS]
+
+REFERENCE PRIORITY — DO NOT BLEND OR AVERAGE REFERENCES
+1. Character sheet = body proportions, silhouette, costume placement, and turnaround identity.
+2. Face refs = facial construction and craft treatment only.
+
+If references disagree, the character sheet wins for anatomy and proportions.
+Do not average [CHARACTER] with older images. Do not redesign them from memory.
+
+Attach face-style refs + character sheet when generating [CHARACTER]. Prefer face refs first.
+CRITICAL: Use the character sheet for identity only. Output ONE standalone Custom scene — NEVER reproduce the sheet, grid, lineup, or multi-panel layout.
+
+For Expression / talking-head stills use: [CHANNEL_ROOT]/Tools - Regenerate Expressions.txt
+
+TASK
+Generate a true vertical composition for the condensed short; do not crop a landscape master into this delivery. Keep [CHARACTER] and the key action large and readable in the portrait frame.
+Generate exactly ONE image for the current Custom script line.
+
+SHOT INSTRUCTION
+Follow the separately supplied unspoken Shot/SHOT instruction for this line's action and composition. Treat it as visual direction only: never narrate it, render it as text, or treat it as dialogue. The app supplies this instruction separately. It complements the current spoken line. Use the full script only for continuity; do not depict future or neighboring beats. If no shot instruction is supplied, infer from the current spoken line alone.
+
+CRITICAL OUTPUT RULES
+- Create exactly 1 image file per Custom line.
+- Generate ONE image at a time.
+- DEFAULT: Exactly ONE [CHARACTER] per image.
+- EXCEPTION — two [CHARACTER] figures ONLY when the spoken line explicitly calls for before/after.
+- Other non-[CHARACTER] characters only if the spoken line clearly requires them.
+- SUPPORTING CAST: [SUPPORTING_CAST_RULE]
+- Every image must be 9:16 portrait.
+- Target final size: 2160×3840. Upscale smaller 9:16 outputs to exactly 2160×3840 before saving.
+- NEVER create a collage, contact sheet, character sheet, grid, lineup, storyboard, or multi-pose sheet.
+- Each Custom image is a standalone scene picture for one spoken line.
+
+COMMA BURSTS
+A trailing comma is spoken punctuation only. It does NOT merge Custom lines into one shared picture.
+- Every `Custom:` newline gets its own distinct image.
+- Show only what THIS spoken line is about.
+
+FILENAME RULE
+Save the file as the spoken voice line after the `Custom:` prefix, including capitalization and spaces, with `.png` appended.
+
+Example:
+Custom: [CHARACTER] stared at the result.
+→ [CHARACTER] stared at the result.png
+
+Place it in the episode folder:
+[CHANNEL_ROOT]/<Episode Name>/Custom-9x16/
+
+Do not use a slug, numbering, shortened description, or the word Custom in the filename.
+If the spoken line later changes, rename the file to match.
+
+MUST-HAVE IDENTITY (full-character depictions) — LOCK THESE FIRST
+[HARD_ID_MARKERS]
+
+For an intentional detail crop, apply character and wardrobe requirements only to the body regions in frame. Require hard ID markers only when those regions are in frame.
+
+Prompt boilerplate for full-character depictions:
+MUST SHOW: [HARD_ID_MARKERS]. Do not omit.
+
+CANONICAL [CHARACTER]
+When [CHARACTER] appears:
+- Match character-sheet proportions exactly.
+- Wardrobe: [WARDROBE]
+- Medium: [ART_MEDIUM]
+- Pose changes expression and body language only. Pose must never redesign anatomy.
+
+STYLE
+Maintain [ART_MEDIUM] from the references. Unique background appropriate to the medium for each still unless your channel standardizes a plate. Show only the few key objects THIS spoken line needs.
+
+COMPOSITION
+- 9:16 portrait.
+- Frame the key action so it remains clear and readable at phone size.
+- Prefer full body when the action needs it. In a detail crop, apply wardrobe and hard ID requirements only to body regions actually in frame.
+- Object-only crops may omit [CHARACTER] when the current line is about the object.
+- Never distort anatomy to fit the frame.
+
+TEXT ON IMAGE (HARD RULE)
+Default to no rendered text. Never alter the spoken script or render narration, paraphrases, or shot instructions. Render no other text unless a scene label is explicitly requested; then use only the exact supplied wording. Hard ID text that is part of the character design is the sole standing exception when those regions are in frame.
+
+SHOT PACE
+One spoken Custom line is one generated image. Do not generate a second or third pose of the same moment.
+
+GENERATION ORDER FOR PROMPTS
+1. Hard ID markers when the relevant body region is in frame
+2. Character-sheet proportion lock
+3. Wardrobe
+4. Face identity + craft construction
+5. Pose / expression WITHOUT changing anatomy
+6. Key props for this line only
+7. TEXT LOCK
+
+QUALITY CONTROL BEFORE ACCEPTING
+1. Exactly one image for this line; 9:16; final 2160×3840.
+2. Exactly ONE [CHARACTER] unless before/after.
+3. Hard ID markers visible on full-character depictions.
+4. Correct wardrobe and medium.
+5. Supporting cast follows [SUPPORTING_CAST_RULE].
+6. Only key objects for this line; filename = spoken line + .png.
+7. True vertical composition (not a cropped landscape master).
+8. Fail and regenerate on missing hard ID (when in frame) or proportion drift.
+
+WORKFLOW
+1. Read the locked script.
+2. List every line that starts with `Custom:`.
+3. For each line, generate exactly one distinct image for that spoken line only.
+4. Upscale to 2160×3840 if needed.
+5. Save it in the episode Custom-9x16 folder using the spoken line as the filename.
+6. Stop. Do not make extra versions unless asked to redo that one line.
+
+CURRENT REQUEST:
+Generate exactly one Custom still for this spoken line:
+
+[SPOKEN LINE]

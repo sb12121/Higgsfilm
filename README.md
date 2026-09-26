@@ -86,6 +86,15 @@ MyVideoProject/
   exports/
 ```
 
+## Channel guide examples
+
+Reusable channel templates live in `examples/`:
+
+- `examples/guides/` — generic Idea guide, Script bible, Style guide, Production workflow, and image prompts with `[PLACEHOLDERS]`
+- `examples/sample-channel/` — filled ClearCash sample showing how to adapt them for any niche
+
+Copy the guides into a new channel folder, fill the placeholders, then point Settings → Idea guide / Script bible at those files. See `examples/README.md`.
+
 ## Next milestones
 
 - Image storyboard approval and variant comparison

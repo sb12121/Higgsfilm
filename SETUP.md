@@ -2,7 +2,7 @@
 
 Higgsfilm is a local Windows app. There is no installer. Copy this whole folder to the other computer, install the tools below, then start the app from this folder.
 
-Episode projects, guides, and the Bux expression library live inside this folder (`DoggoBux` and each project’s `higgsfilm.json`). They move with the copy.
+Episode projects and channel assets live in your channel folders (each project’s `higgsfilm.json`). Generic channel guide templates live in `examples/` — copy them into a new channel folder and fill the placeholders. Live channel media (for example `DoggoBux`) stays local and is gitignored.
 
 ## What does not move with the folder
 
@@ -34,6 +34,7 @@ Episode projects, guides, and the Bux expression library live inside this folder
 1. In the app, sign in to ChatGPT with the Codex login. On this computer, run `codex login` if you prefer the terminal. `codex login status` should report that ChatGPT is logged in.
 2. Open Settings and set:
    - Channel folder
+   - Idea guide + Script bible (start from `examples/guides/` or the filled sample in `examples/sample-channel/`)
    - Expression library
    - Custom-image guide
    - Character sheet
@@ -61,6 +62,6 @@ Higgsfield image generation uses credentials entered in Connection settings. Tho
 This folder is Higgsfilm, a local Electron app. Install what it needs and start it.
 - Install Node.js, FFmpeg on PATH, and the Codex CLI (`npm install -g @openai/codex`).
 - In this folder run npm install, then npm run dev.
-- Do not change project files under DoggoBux.
+- Channel guide templates are in examples/. Live channel media folders (if present) are local assets.
 Settings live in %APPDATA%\higgsfilm\higgsfilm-settings.json. I will sign in to ChatGPT in the app myself and set the channel, expression, character sheet, and guide paths after it opens.
 ```

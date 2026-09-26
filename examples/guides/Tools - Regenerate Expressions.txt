@@ -1,0 +1,116 @@
+[CHANNEL] EXPRESSION IMAGE GENERATION MASTER PROMPT
+
+APP USE: Tools > Regenerate expressions > Choose guide. Generates standalone alternatives; select one per spoken reaction line.
+
+([CHANNEL] — [ART_MEDIUM] — Expressions)
+
+Use this guide only when regenerating the legacy expression library. New [CHANNEL] scripts use Custom stills for every spoken line, including reactions and the fixed closer. Do not use 01, 02, 03 as a mini-animation across a line.
+
+Higgsfilm Tools → Regenerate expressions uses this guide.
+Each run attaches, in this order:
+1. Face / craft references (facial construction and craft texture only).
+2. The character sheet (proportions, silhouette, costume, identity).
+3. One empty background plate, shared by every expression and every frame.
+
+Use the channel style guide + those attached images as canonical design.
+- Style guide: [CHANNEL_ROOT]/Visual Direction - Style Guide.md
+- PRIMARY IDENTITY + PROPORTION LOCK: [CHARACTER_SHEET]
+- Face / craft look (attach first): [FACE_REFS]
+- Background plate: the one empty image chosen in Tools. It is the only background.
+
+Do NOT attach a finished scene still or a hero pose. Those pull the body toward one pose.
+For Custom / scene stills use: [CHANNEL_ROOT]/Visual Direction - Custom Images 16x9.txt
+
+REFERENCE PRIORITY — DO NOT BLEND OR AVERAGE REFERENCES
+1. Character sheet = body proportions, silhouette, costume, and turnaround identity.
+2. Face refs = facial construction and craft treatment only.
+3. Background plate = the exact full-frame background. Use it edge to edge and unchanged.
+
+If references disagree, the character sheet wins for anatomy and proportions.
+The background plate wins for the page. Do not invent a new background.
+
+Attach face-style refs first. Then the character sheet. Then the background plate.
+CRITICAL: Use the character sheet for identity only. Output ONE standalone expression frame — NEVER reproduce the sheet, grid, lineup, or multi-panel layout.
+
+TASK
+Generate exactly ONE image for this expression frame: [EXPRESSION / POSE].
+
+The app can create three alternate poses per expression, one image at a time:
+- 01, 02, and 03 are independently usable alternatives.
+- Choose ONE alternative for each spoken reaction line.
+- Each must communicate the complete expression on its own; never require sequential playback.
+
+Do not generate the other frames in this image. Do not continue to extra versions after this one frame.
+
+CRITICAL OUTPUT RULES
+- Create exactly 1 image file for this frame.
+- Generate ONE image at a time.
+- Exactly ONE [CHARACTER]. Never two.
+- Nothing but [CHARACTER] on the attached background plate. No props, scenery, furniture, bubbles, other characters, logos, captions, numbers, frame labels, or watermarks.
+- Every image must be 16:9 landscape.
+- The app saves the finished file at 3840×2160. Compose for that 16:9 frame.
+- NEVER create a collage, contact sheet, character sheet, grid, lineup, storyboard, or multi-pose sheet.
+- NEVER burn `01`, `02`, `03`, or any caption into the pixels. Those numbers are filenames only.
+- Only the pose changes between frames. Background, scale, and center stay fixed.
+
+BACKGROUND LOCK
+The attached background image is the only background for every expression and every frame.
+- Use that plate edge to edge and unchanged.
+- Do not redraw, crop, restyle, or replace it.
+- The app stores a copy of this plate as `_bg_plate.png` in the expression folder. That file is a helper. Do not draw it.
+
+SCALE AND CENTER LOCK
+Keep [CHARACTER] the same size and dead center in all three frames, and the same size across expressions.
+- Anchor the feet / legs. Raised arms must not walk them across the page.
+- Only body pose and expression change.
+
+MUST-HAVE IDENTITY — LOCK THESE FIRST
+Every image MUST show:
+[HARD_ID_MARKERS]
+
+Prompt boilerplate:
+MUST SHOW: [HARD_ID_MARKERS]. Do not omit.
+
+CANONICAL [CHARACTER]
+- Match character-sheet proportions exactly.
+- Wardrobe: [WARDROBE]
+- Medium: [ART_MEDIUM]
+- Pose changes expression and body language only. Pose must never redesign anatomy.
+
+COMPOSITION
+- 16:9 landscape.
+- Full body from head to feet unless the expression name itself is a gesture that requires otherwise.
+- Exactly two arms and two clean eyes when that matches the character design.
+- Nothing but [CHARACTER]. Props and scene gags belong in Custom stills.
+
+EXPRESSION / POSE
+Every image must clearly communicate the requested expression or pose.
+01, 02, and 03 are different, independently readable reaction poses. Choose one per line.
+Vary the pose, not the character identity, scale, or crop.
+
+GENERATION ORDER
+1. Hard ID markers
+2. Character-sheet proportion lock
+3. Wardrobe
+4. Face identity + craft construction
+5. This frame’s expression / pose WITHOUT changing anatomy
+6. The attached background plate, unchanged, with [CHARACTER] the same size and dead center
+
+QUALITY CONTROL BEFORE ACCEPTING
+1. Exactly one image for this frame; 16:9.
+2. Exactly one [CHARACTER], and nothing else except the background plate.
+3. Craft matches the face refs.
+4. Background is the attached plate.
+5. Correct wardrobe and hard ID markers.
+6. This frame’s expression is clear as a standalone reaction.
+7. FAIL if any text, numbers, captions, labels, props, scenery, or bubbles appear.
+8. FAIL if proportions drift or [CHARACTER] changes size / drifts off center between frames.
+
+FILENAME AND SAVE
+The app saves this frame. Do not invent a filename and do not write the file yourself.
+- Folder: the channel Expressions folder, one folder per expression name.
+- Files: `01.png`, `02.png`, `03.png`.
+- `_bg_plate.png` is the shared plate copy. The app ignores it when casting stills.
+
+CURRENT REQUEST:
+[EXPRESSION / POSE]
