@@ -13,8 +13,8 @@ Higgsfilm is a local-first Windows desktop prototype for turning narration and c
 - ChatGPT creative copilot through the official locally authenticated Codex CLI
 - Server-side Higgsfield image generation adapter
 - Windows-encrypted Higgsfield credentials
-- Local FFmpeg longform export at 1920×1080 / 30 fps
-- Dialogue-first loudness normalization at -16 LUFS
+- Local FFmpeg longform export at 3840×2160 / 30 fps
+- Dialogue studio master (cleanup, EQ, dynamics, two-pass -16 LUFS) with AAC 384 kbps
 
 ## Run locally
 
@@ -24,6 +24,22 @@ npm run dev
 ```
 
 The development environment expects `ffmpeg` to be available on `PATH`. You can set `FFMPEG_PATH` to a full executable path when needed.
+
+## QWEN paragraph TTS alignment
+
+QWEN paragraph voice generation keeps the natural paragraph take, then uses the local
+Whisper-family bridge in `scripts/qwen-align.py` to verify the words and place each
+timeline cue after a spoken word. Install the bridge dependency in the Python runtime
+you want Higgsfilm to use:
+
+```bash
+python -m pip install -r scripts/requirements-qwen-align.txt
+```
+
+The first alignment downloads the configured `small.en` Whisper model. Set
+`QWEN_ALIGNMENT_PYTHON` when the runtime is not the `python` command on `PATH`.
+Higgsfilm reports the detected runtime/model in Settings and never falls back to
+unsafe proportional speech cuts.
 
 ## Higgsfield setup
 
@@ -52,9 +68,10 @@ codex login status
 ```
 
 After Codex reports that it is logged in with ChatGPT, use the **Creative copilot** card on the
-production board. Higgsfilm requests `gpt-5.6-luna` with `max` reasoning, and runs Codex in a
-read-only, ephemeral mode for planning and prompt drafts. Override those defaults with
-`CODEX_MODEL` or `CODEX_REASONING_EFFORT` if your account exposes different model names.
+production board. Higgsfilm requests `gpt-5.6-luna` with low reasoning by default, and runs Codex
+in a read-only, ephemeral mode for planning and prompt drafts. Change the reasoning effort or
+enable the Fast priority service tier in Settings when you need a different speed/usage tradeoff,
+or override the model and effort with `CODEX_MODEL` and `CODEX_REASONING_EFFORT`.
 
 ## Project layout
 

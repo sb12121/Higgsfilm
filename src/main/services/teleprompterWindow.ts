@@ -10,16 +10,32 @@ export class TeleprompterWindow {
 
   async show(payload: RecordingFocusPayload): Promise<void> {
     const window = await this.ensure()
-    this.positionOnMainMonitor(window)
-    window.webContents.send('teleprompter:update', payload)
-    if (!window.isVisible()) window.showInactive()
+    this.present(window, payload)
   }
 
   async update(payload: RecordingFocusPayload): Promise<void> {
     const window = await this.ensure()
-    this.positionOnMainMonitor(window)
+    this.present(window, payload)
+  }
+
+  private present(window: BrowserWindow, payload: RecordingFocusPayload): void {
+    this.positionOnMainMonitor(window, this.heightForPayload(payload))
     window.webContents.send('teleprompter:update', payload)
     if (!window.isVisible()) window.showInactive()
+  }
+
+  private heightForPayload(payload: RecordingFocusPayload): number {
+    const lineCount = payload.lines && payload.lines.length > 1 ? payload.lines.length : 1
+    const expressions = (payload.expressions || []).filter((value) => value.trim())
+    const mixed = new Set(expressions.map((value) => value.trim().toLowerCase())).size > 1
+    const tone = Boolean(payload.expression || expressions.length)
+    const speakers = (payload.speakers || []).filter((value) => value.trim())
+    const mixedSpeakers = new Set(speakers.map((value) => value.trim().toLowerCase())).size > 1
+    const speaker = Boolean(payload.speaker || speakers.length)
+    return Math.min(
+      640,
+      236 + (tone ? 28 : 0) + (speaker ? 48 : 0) + lineCount * (mixed || mixedSpeakers ? 58 : 36),
+    )
   }
 
   async hide(): Promise<void> {
@@ -78,15 +94,15 @@ export class TeleprompterWindow {
     return window
   }
 
-  private positionOnMainMonitor(window: BrowserWindow): void {
+  private positionOnMainMonitor(window: BrowserWindow, requestedHeight = 280): void {
     const mainBounds = this.mainWindow.isDestroyed()
       ? screen.getPrimaryDisplay().workArea
       : this.mainWindow.getBounds()
     const display = screen.getDisplayMatching(mainBounds)
     const workArea = display.workArea
-    const [windowWidth, windowHeight] = window.getSize()
+    const [windowWidth] = window.getSize()
     const width = Math.min(windowWidth, Math.max(520, workArea.width - 48))
-    const height = Math.min(windowHeight, Math.max(210, workArea.height - 48))
+    const height = Math.min(Math.max(requestedHeight, 240), Math.max(240, workArea.height - 48))
     const x = workArea.x + Math.round((workArea.width - width) / 2)
     const topQuarterCenter = workArea.y + Math.round(workArea.height * 0.25)
     const y = Math.max(workArea.y + 24, topQuarterCenter - Math.round(height / 2))

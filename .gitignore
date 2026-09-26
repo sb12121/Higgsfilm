@@ -2,12 +2,27 @@ node_modules/
 out/
 dist/
 .higgsfilm-render-*/
+.higgsfilm-thumbs/
 *.log
 .DS_Store
+__pycache__/
 
 # Local credentials and generated project media
 .env
 settings.json
 exports/
 scenes/
+tmp/
 .gstack/
+artifacts/
+
+# Channel project media (too large for git; keep local)
+DoggoBux/
+Doggomation/
+Purrimations/
+
+# Local junk / model weights
+-
+_pathcheck.txt
+eng.traineddata
+recovered-last-chat.md

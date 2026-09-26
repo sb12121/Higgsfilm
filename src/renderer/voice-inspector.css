@@ -1,0 +1,339 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b0d12;
+  --panel: #12161f;
+  --line: rgba(255, 255, 255, 0.1);
+  --text: #eef2f8;
+  --muted: #8b95a8;
+  --accent: #82d9e4;
+  --cyan: #82d9e4;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.inspector-shell {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  width: 100%;
+  height: 100%;
+}
+
+.inspector-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+  -webkit-app-region: drag;
+  user-select: none;
+}
+
+.inspector-chrome-meta {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.inspector-chrome-meta .eyebrow {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.inspector-chrome-meta strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.inspector-chrome-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  -webkit-app-region: no-drag;
+}
+
+.inspector-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.inspector-button:hover:not(:disabled) {
+  border-color: rgba(130, 217, 228, 0.45);
+  background: rgba(130, 217, 228, 0.1);
+}
+
+.inspector-button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.inspector-button.is-active {
+  border-color: rgba(130, 217, 228, 0.55);
+  background: rgba(130, 217, 228, 0.16);
+  color: var(--accent);
+}
+
+.inspector-button.is-close:hover:not(:disabled) {
+  border-color: rgba(255, 120, 120, 0.5);
+  background: rgba(255, 80, 80, 0.12);
+}
+
+.inspector-script {
+  padding: 12px 16px 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.inspector-script p {
+  margin: 0;
+  max-height: 4.4em;
+  overflow: hidden;
+  color: var(--text);
+}
+
+.inspector-stage {
+  position: relative;
+  display: grid;
+  align-content: center;
+  min-height: 0;
+  overflow: auto;
+  padding: 16px;
+  background:
+    linear-gradient(135deg, rgba(130, 217, 228, 0.03) 25%, transparent 25%) 0 0 / 24px 24px,
+    var(--bg);
+}
+
+.inspector-empty,
+.inspector-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: 8px;
+  place-content: center;
+  place-items: center;
+  color: var(--muted);
+  text-align: center;
+}
+
+.inspector-empty strong,
+.inspector-loading strong {
+  color: var(--text);
+  font-size: 16px;
+}
+
+.inspector-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.inspector-footer kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font: inherit;
+  text-align: center;
+}
+
+.inspector-hotkeys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.voice-preview-stack {
+  display: grid;
+  gap: 12px;
+  width: min(920px, 100%);
+  margin: 0 auto;
+}
+
+.voice-preview-large {
+  position: relative;
+  min-height: 280px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  cursor: ew-resize;
+}
+
+.voice-preview-large.is-busy {
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.voice-waveform-canvas {
+  display: block;
+  width: 100%;
+  height: 280px;
+  touch-action: none;
+}
+
+.voice-preview-busy {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  justify-items: center;
+  color: #d7e4ea;
+  background: rgba(10, 14, 20, 0.55);
+  font-size: 11px;
+}
+
+.voice-preview-error {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  margin: 0;
+  color: #f0b4b4;
+  font-size: 10px;
+  text-align: center;
+}
+
+.voice-preview-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.voice-preview-time {
+  color: #8b96a8;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.voice-preview-hint {
+  margin: 0;
+  color: #6f7b8d;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.scene-preview-empty {
+  display: grid;
+  gap: 8px;
+  place-content: center;
+  place-items: center;
+  min-height: 280px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.scene-preview-empty strong {
+  color: var(--text);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 35px;
+  padding: 0 13px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 650;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.button-secondary {
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #dce1e9;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.button-secondary:hover:not(:disabled),
+.button-quiet:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.23);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.button-quiet {
+  border-color: var(--line);
+  color: #aeb5c2;
+  background: transparent;
+}
+
+.subtle-label {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

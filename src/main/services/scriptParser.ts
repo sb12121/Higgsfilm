@@ -17,6 +17,11 @@ function splitWithRegex(text: string): string[] {
     .filter(Boolean)
 }
 
+export interface ParsedScriptLine {
+  text: string
+  paragraphIndex: number
+}
+
 export function splitIntoSentences(script: string): string[] {
   const normalized = script.replace(/\r\n/g, '\n').trim()
   if (!normalized) return []
@@ -41,6 +46,38 @@ export function splitIntoSentences(script: string): string[] {
     .filter(Boolean)
 
   return cleaned.length > 0 ? cleaned : splitWithRegex(normalized)
+}
+
+export type ScriptLineMode = 'sentences' | 'stanzas'
+
+export function splitIntoScriptLines(script: string): ParsedScriptLine[] {
+  const normalized = script.replace(/\r\n/g, '\n').trim()
+  if (!normalized) return []
+
+  return normalized
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
+    .flatMap((paragraph, paragraphIndex) =>
+      splitIntoSentences(paragraph).map((text) => ({ text, paragraphIndex })),
+    )
+}
+
+export function splitIntoStanzaLines(script: string): ParsedScriptLine[] {
+  const normalized = script.replace(/\r\n/g, '\n').trim()
+  if (!normalized) return []
+
+  // Expression stills: every newline is one scene, one still, and one recording take.
+  // Trailing commas are spoken punctuation only — they do not merge lines into a shared stanza.
+  return normalized
+    .split('\n')
+    .map((line) => stripLeadingTimestamp(line.replace(/\s+/g, ' ').trim()))
+    .filter(Boolean)
+    .map((text, paragraphIndex) => ({ text, paragraphIndex }))
+}
+
+export function splitScript(script: string, mode: ScriptLineMode = 'sentences'): ParsedScriptLine[] {
+  return mode === 'stanzas' ? splitIntoStanzaLines(script) : splitIntoScriptLines(script)
 }
 
 export function estimateTimeline(

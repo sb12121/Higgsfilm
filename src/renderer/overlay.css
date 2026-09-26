@@ -66,6 +66,74 @@ body {
   letter-spacing: 0.14em;
 }
 
+.teleprompter-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.teleprompter-speaker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  line-height: 1.15;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.teleprompter-speaker small {
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
+.teleprompter-speaker.is-fool {
+  color: #fbbf24;
+}
+
+.teleprompter-overlay.is-fool .teleprompter-card {
+  border-color: rgba(251, 191, 36, 0.45);
+}
+
+.teleprompter-speaker.is-realization {
+  color: #93c5fd;
+}
+
+.teleprompter-overlay.is-realization .teleprompter-card {
+  border-color: rgba(147, 197, 253, 0.5);
+}
+
+.teleprompter-overlay.is-recording.is-fool .teleprompter-card {
+  border-color: rgba(251, 191, 36, 0.7);
+}
+
+.teleprompter-overlay.is-recording.is-realization .teleprompter-card {
+  border-color: rgba(96, 165, 250, 0.75);
+}
+
+.teleprompter-tone {
+  margin: 0;
+  color: #fbbf24;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.teleprompter-overlay.is-realization .teleprompter-tone {
+  color: #93c5fd;
+}
+
 .teleprompter-script {
   margin: 0;
   color: #f8fafc;
@@ -74,6 +142,22 @@ body {
   line-height: 1.18;
   text-align: center;
   text-wrap: balance;
+}
+
+.teleprompter-stanza {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.teleprompter-beat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.teleprompter-stanza p {
+  margin: 0;
 }
 
 .teleprompter-status {
